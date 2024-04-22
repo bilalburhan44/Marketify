@@ -119,7 +119,7 @@ function ProtectedRoutes({ children }) {
   return (
     user && (
       <div>
-        <div className="navbar bg-base-100">
+        <div className="navbar bg-base-100 flex justify-between items-center">
           <div className="flex justify-center items-center">
             <img className="w-28 cursor-pointer" src={logo} onClick={() => navigate("/")} />
             <div class="text-gray-500 order-3 w-full md:w-auto md:order-2">
