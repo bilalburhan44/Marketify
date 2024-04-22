@@ -62,6 +62,7 @@ function ProfilePic() {
                 alt="..."
                 src={profilePic ? profilePic : image}
                 className="shadow-xl mt-12 border-none max-w-150-px object-cover rounded-full" // Apply rounded corners for circular image
+                style={{ objectFit: 'cover', width: '150px', height: '150px' }}
               />
             </div>
           </div>
