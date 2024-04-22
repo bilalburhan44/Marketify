@@ -119,11 +119,11 @@ function ProtectedRoutes({ children }) {
   return (
     user && (
       <div>
-        <div className="navbar bg-base-100 flex justify-between ">
+        <div className="navbar bg-base-100 flex justify-between items-center"  style={{ flexShrink: 0 , flexWrap : "nowrap" }}>
           <div className="flex justify-center items-center">
             <img className="w-28 cursor-pointer" src={logo} onClick={() => navigate("/")} />
             <div class="text-gray-500 order-3 w-full md:w-auto md:order-2">
-              <ul class="flex font-semibold justify-between gap-3">
+              <ul class="flex font-semibold justify-between gap-2">
                 <li class={`md:px-4 md:py-2 cursor-pointer hover:text-indigo-400 ${activeItem === '' ? 'text-indigo-500' : 'text-gray-500'}`} onClick={() => handleItemClick('')}>Dashboard</li>
                 <li class={`md:px-4 md:py-2 cursor-pointer hover:text-indigo-400 ${activeItem === 'user-product' ? 'text-indigo-500' : 'text-gray-500'}`} onClick={() => handleItemClick('user-product')}>Products</li>
                 <li class={`md:px-4 md:py-2 cursor-pointer hover:text-indigo-400 ${activeItem === 'about' ? 'text-indigo-500' : 'text-gray-500'}`} onClick={() => handleItemClick('about')}>About</li>
