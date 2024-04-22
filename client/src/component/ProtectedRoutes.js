@@ -119,11 +119,11 @@ function ProtectedRoutes({ children }) {
   return (
     user && (
       <div>
-        <div className="navbar bg-base-100 flex justify-between items-center">
+        <div className="navbar bg-base-100 flex justify-between ">
           <div className="flex justify-center items-center">
             <img className="w-28 cursor-pointer" src={logo} onClick={() => navigate("/")} />
             <div class="text-gray-500 order-3 w-full md:w-auto md:order-2">
-              <ul class="flex font-semibold justify-between ml-4 gap-3">
+              <ul class="flex font-semibold justify-between gap-3">
                 <li class={`md:px-4 md:py-2 cursor-pointer hover:text-indigo-400 ${activeItem === '' ? 'text-indigo-500' : 'text-gray-500'}`} onClick={() => handleItemClick('')}>Dashboard</li>
                 <li class={`md:px-4 md:py-2 cursor-pointer hover:text-indigo-400 ${activeItem === 'user-product' ? 'text-indigo-500' : 'text-gray-500'}`} onClick={() => handleItemClick('user-product')}>Products</li>
                 <li class={`md:px-4 md:py-2 cursor-pointer hover:text-indigo-400 ${activeItem === 'about' ? 'text-indigo-500' : 'text-gray-500'}`} onClick={() => handleItemClick('about')}>About</li>
@@ -132,7 +132,7 @@ function ProtectedRoutes({ children }) {
 
           </div>
 
-          <div className="flex-none align-items-center gap-4">
+          <div className="flex-none align-items-center gap-4 md:w-auto">
             <div className="dropdown dropdown-end">
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
 
