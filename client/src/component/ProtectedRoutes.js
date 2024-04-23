@@ -13,7 +13,6 @@ import { message } from "antd";
 import image from "./../pages/Profile/profileicon.webp"
 import Footer from "./Footer";
 import { useEmail } from "../pages/Register/EmailContext";
-import { jwtDecode } from 'jwt-decode'
 
 function ProtectedRoutes({ children }) {
   const { user } = useSelector((state) => state.users);
@@ -101,7 +100,6 @@ function ProtectedRoutes({ children }) {
       setUser(user);
     }
   }, [user]);
-
   const handleLogout = () => {
     localStorage.removeItem("token");
     dispatch(setUser(null)); // Clear user state
@@ -121,8 +119,8 @@ function ProtectedRoutes({ children }) {
   return (
     user && (
       <div>
-        <div className="navbar bg-base-100 flex justify-between items-center"  style={{ flexShrink: 0 , flexWrap : "nowrap" }}>
-          <div className="flex justify-center items-center">
+        <div className="navbar bg-base-100 flex justify-between" style={{ flexShrink: 0 , flexWrap : "nowrap" }}>
+          <div className="flex items-center">
             <img className="w-28 cursor-pointer" src={logo} onClick={() => navigate("/")} />
             <div class="text-gray-500 order-3 w-full md:w-auto md:order-2">
               <ul class="flex font-semibold justify-between gap-2">
@@ -131,10 +129,8 @@ function ProtectedRoutes({ children }) {
                 <li class={`md:px-4 md:py-2 cursor-pointer hover:text-indigo-400 ${activeItem === 'about' ? 'text-indigo-500' : 'text-gray-500'}`} onClick={() => handleItemClick('about')}>About</li>
               </ul>
             </div>
-
           </div>
-
-          <div className="flex-none align-items-center gap-4 md:w-auto">
+          <div className="flex items-center gap-4 md:w-auto" >
             <div className="dropdown dropdown-end">
               <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
 
@@ -179,6 +175,7 @@ function ProtectedRoutes({ children }) {
             </div>
           </div>
         </div>
+
         <div>
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
             <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity="error">
