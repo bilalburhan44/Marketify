@@ -102,43 +102,6 @@ function ProtectedRoutes({ children }) {
     }
   }, [user]);
 
-  const checkTokenExpiration = () => {
-  const token = localStorage.getItem('token');
-  if (token) {
-    const decodedToken = decodeToken(token);
-    const expirationTime = decodedToken.exp * 1000; // Convert expiration time to milliseconds
-    const currentTime = Date.now();
-
-    if (currentTime > expirationTime) {
-      // Token has expired, log out the user
-      handleLogout();
-    } else {
-      // Set a timeout for auto-logout when the token expires
-      const timeUntilExpiration = expirationTime - currentTime;
-      setTimeout(() => {
-        handleLogout();
-      }, timeUntilExpiration);
-    }
-  }
-};
-
-
-// Function to decode the JWT token
-const decodeToken = (token) => {
-  try {
-    const decodedToken = jwtDecode(token);
-    return decodedToken;
-  } catch (error) {
-    console.error('Error decoding token:', error);
-    return null;
-  }
-};
-
-// Call the checkTokenExpiration function when the app loads or when the user logs in
-useEffect(() => {
-  checkTokenExpiration();
-}, []);
-
   const handleLogout = () => {
     localStorage.removeItem("token");
     dispatch(setUser(null)); // Clear user state
