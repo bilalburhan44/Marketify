@@ -123,7 +123,7 @@ const validpass = await bcrypt.compare(
 if(!validpass){
     throw new Error('invalid password');
 }
- const token = jwt.sign({userId : user._id},process.env.jwt_secret , {expiresIn : '2d'});
+  const token = jwt.sign({userId : user._id},process.env.jwt_secret ,{expiresIn : '2d'});
 // success
 
 res.send({
