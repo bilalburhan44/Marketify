@@ -19,16 +19,21 @@ const io = require('socket.io')(server, {
 }
 })
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: process.env.NODE_ENV === 'production' ? 'https://marketify-qcnh.onrender.com' : 'http://localhost:3000',
   methods: ['GET', 'POST'],
   credentials: true,
 }));
 
 app.use(session({
-  secret: 'secret',
+  secret: process.env.SESSION_SECRET || 'secret',
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: true,
+  cookie: {
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 1000 * 60 * 60 * 24 * 2 // 2 days
+  }
 }));
+
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -40,23 +45,21 @@ app.get('/auth/google',
 app.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-    // Ensure req.user is defined after successful authentication
+    console.log('Inside Google Callback');
     if (req.user) {
-      // Generate a token using the user's ID
+      console.log('User authenticated:', req.user);
       const token = jwt.sign({ userId: req.user._id }, process.env.JWT_SECRET, { expiresIn: '2d' });
       req.session.token = token;
-
-      // Redirect to the client with the token as a query parameter
       const redirectUrl = process.env.NODE_ENV === 'production' ? 'https://marketify-qcnh.onrender.com/login' : 'http://localhost:3000/login';
-      
-      // Redirect to the client with the token as a query parameter
-      res.redirect(`https://marketify-qcnh.onrender.com/login?token=${token}`);
+      res.redirect(`${redirectUrl}?token=${token}`);
     } else {
-      // Handle the case where user is not defined
+      console.error('User not authenticated');
       res.status(401).json({ error: 'User not authenticated' });
     }
   }
 );
+
+
 
 app.get('/get-token', (req, res) => {
   const token = req.session.token;
