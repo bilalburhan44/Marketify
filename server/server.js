@@ -47,7 +47,10 @@ app.get('/auth/google/callback',
       req.session.token = token;
 
       // Redirect to the client with the token as a query parameter
-      res.redirect(`http://localhost:3000/login?token=${token}`);
+      const redirectUrl = process.env.NODE_ENV === 'production' ? 'https://marketify-qcnh.onrender.com/login' : 'http://localhost:3000/login';
+      
+      // Redirect to the client with the token as a query parameter
+      res.redirect(`${redirectUrl}?token=${token}`);
     } else {
       // Handle the case where user is not defined
       res.status(401).json({ error: 'User not authenticated' });
