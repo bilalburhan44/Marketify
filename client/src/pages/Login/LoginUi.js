@@ -164,7 +164,7 @@ function Login() {
                   <div className="divider">OR</div>
                 </div>
                 <button
-                  className="block w-full bg-indigo-600 py-2 rounded-2xl text-white font-semibold mb-2 hover:bg-indigo-700 focus:outline-none"
+                  className="block w-full px-6 border-2 border-gray-300 rounded-full transition duration-300 hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100 focus:outline-none"
                   onClick={handleGoogleLoginAndCallback}
                 >
                   <div className="relative flex items-center justify-center">
@@ -173,7 +173,7 @@ function Login() {
                       className="absolute left-5 w-5"
                       alt="google logo"
                     />
-                    <span className="font-semibold tracking-wide text-white text-sm sm:text-base">
+                    <span className="block w-max font-semibold tracking-wide text-gray-700 text-sm transition duration-300 group-hover:text-blue-600 sm:text-base">
                       Continue with Google
                     </span>
                   </div>
