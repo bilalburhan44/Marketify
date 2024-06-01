@@ -15,7 +15,10 @@ function(accessToken, refreshToken, profile, done) {
   const profilepic = photos && photos.length > 0 ? photos[0].value : undefined; // Extract profile picture
   User.findOrCreate({ googleId: id, email, name: displayName, profilepic:profilepic })
     .then(user => done(null, user))
-    .catch(err => done(err));
+    .catch(err => {
+      console.error('Error in findOrCreate:', err);
+      done(err);
+    });
 }
 ));
 
