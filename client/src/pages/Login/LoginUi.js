@@ -74,17 +74,14 @@ function Login() {
     window.location.href = googleRedirectUrl;
   };
 
-
   return (
-    <section className="bg-white overflow-hidden scrollbar-hide" dir={i18n.language === 'ar' || i18n.language === 'ku' ? 'rtl' : 'ltr'}
-    >
+    <section className="bg-white overflow-hidden scrollbar-hide" dir={i18n.language === 'ar' || i18n.language === 'ku' ? 'rtl' : 'ltr'}>
       <>
         {/* component */}
         <div className="flex flex-col md:flex-row">
           <div className="relative overflow-hidden md:w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 hidden md:flex justify-around items-center">
             <div>
               <h1 className="text-white font-bold text-4xl font-sans">Marketify</h1>
-
               <p className="text-white mt-1">{t('A platform where you can sell and buy used stuff')}</p>
             </div>
             <div className="absolute -bottom-32 -left-40 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8" />
@@ -93,8 +90,8 @@ function Login() {
             <div className="absolute -top-20 -right-20 w-80 h-80 border-4 rounded-full border-opacity-30 border-t-8" />
           </div>
           <div className="flex md:w-1/2 justify-center py-6 items-center bg-white">
-            <div className="flex  flex-col justify-center items-center bg-white">
-              <form className="w-full  max-w-sm bg-white px-6 md:py-16 md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto" onSubmit={onsubmit} dir={i18n.language === 'ar' || i18n.language === 'ku' ? 'rtl' : 'ltr'}>
+            <div className="flex flex-col justify-center items-center bg-white">
+              <form className="w-full max-w-sm bg-white px-6 md:py-16 md:max-w-md lg:max-w-lg xl:max-w-xl mx-auto" onSubmit={onsubmit} dir={i18n.language === 'ar' || i18n.language === 'ku' ? 'rtl' : 'ltr'}>
                 <h1 className="text-gray-800 font-bold text-2xl mb-1">{t('login')}</h1>
                 <p className="text-sm font-normal text-gray-600 mb-7">{t('Please log in to your account')}</p>
 
@@ -167,17 +164,16 @@ function Login() {
                   <div className="divider">OR</div>
                 </div>
                 <button
-                  className="group mt-2 h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100 focus:outline-none"
+                  className="block w-full bg-indigo-600 py-2 rounded-2xl text-white font-semibold mb-2 hover:bg-indigo-700 focus:outline-none"
                   onClick={handleGoogleLoginAndCallback}
-                  
                 >
-                  <div className="relative flex items-center space-x-12 justify-center">
+                  <div className="relative flex items-center justify-center">
                     <img
                       src="https://tailus.io/sources/blocks/social/preview/images/google.svg"
-                      className="absolute left-0 w-5"
+                      className="absolute left-5 w-5"
                       alt="google logo"
                     />
-                    <span className="block w-max font-semibold tracking-wide text-gray-700 text-sm transition duration-300 group-hover:text-blue-600 sm:text-base">
+                    <span className="font-semibold tracking-wide text-white text-sm sm:text-base">
                       Continue with Google
                     </span>
                   </div>
@@ -185,27 +181,28 @@ function Login() {
               </form>
             </div>
           </div>
-          <Select defaultValue={i18n.language} onChange={changeLanguage} className="w-full md:w-auto">
-            <Select.Option value="en">English</Select.Option>
-            <Select.Option value="ku">کوردی</Select.Option>
-            <Select.Option value="ar">العربية</Select.Option>
-          </Select>
+          <div className="w-full flex justify-center md:justify-end p-4 md:p-6">
+            <Select
+              defaultValue={i18n.language}
+              onChange={changeLanguage}
+              className="w-full max-w-xs md:max-w-none md:w-32"
+            >
+              <Select.Option value="en">English</Select.Option>
+              <Select.Option value="ku">کوردی</Select.Option>
+              <Select.Option value="ar">العربية</Select.Option>
+            </Select>
+          </div>
         </div>
         {open && (
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <MuiAlert
-              severity="error"
-              onClose={handleClose}
-            >
+            <MuiAlert severity="error" onClose={handleClose}>
               {alertMessage}
             </MuiAlert>
           </Snackbar>
         )}
       </>
-
     </section>
   );
-};
-
+}
 
 export default Login;
