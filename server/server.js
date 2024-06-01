@@ -63,7 +63,11 @@ app.get('/auth/google/callback',
 
 app.get('/get-token', (req, res) => {
   const token = req.session.token;
-  res.json({ token });
+  if (token) {
+    res.json({ token });
+  } else {
+    res.status(401).json({ error: 'No token found' });
+  }
 });
 
 const usersRoutes = require('./routes/usersRoute');
