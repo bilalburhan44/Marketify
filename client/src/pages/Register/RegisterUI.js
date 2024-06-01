@@ -215,7 +215,7 @@ function Register() {
             </button>
             </form>
           </div>
-          <Select defaultValue={i18n.language} onChange={changeLanguage}>
+          <Select defaultValue={i18n.language} onChange={changeLanguage} className="w-full md:w-auto">
             <Select.Option value="en">English</Select.Option>
             <Select.Option value="ku">کوردی</Select.Option>
             <Select.Option value="ar">العربية</Select.Option>
