@@ -164,7 +164,7 @@ function Login() {
                   <div className="divider">OR</div>
                 </div>
                 <button
-                  className="block w-full px-6 border-2 border-gray-300 rounded-full transition duration-300 hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100 focus:outline-none"
+                  className="block w-full h-12 px-6 border-2 border-gray-300 rounded-full transition duration-300 hover:border-blue-400 focus:bg-blue-50 active:bg-blue-100 focus:outline-none"
                   onClick={handleGoogleLoginAndCallback}
                 >
                   <div className="relative flex items-center justify-center">
