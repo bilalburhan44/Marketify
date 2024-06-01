@@ -70,8 +70,8 @@ function Login() {
 
   const handleGoogleLoginAndCallback = (e) => {
     e.preventDefault();
-    // Redirect to Google authentication
-    window.location.href = 'http://localhost:5000/auth/google';
+    const googleRedirectUrl = process.env.NODE_ENV === 'production' ? 'https://marketify-qcnh.onrender.com/auth/google' : 'http://localhost:5000/auth/google';
+    window.location.href = googleRedirectUrl;
   };
 
 
@@ -185,7 +185,7 @@ function Login() {
               </form>
             </div>
           </div>
-          <Select defaultValue={i18n.language} onChange={changeLanguage}>
+          <Select defaultValue={i18n.language} onChange={changeLanguage} className="w-full md:w-auto">
             <Select.Option value="en">English</Select.Option>
             <Select.Option value="ku">کوردی</Select.Option>
             <Select.Option value="ar">العربية</Select.Option>
