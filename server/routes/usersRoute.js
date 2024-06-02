@@ -149,17 +149,17 @@ res.send({
 router.get('/get-current-user', authMiddlewares, async (req, res) => {
   try {
       const userId = req.body.userId; // Ensure you're getting the correct user ID, possibly from req.user or similar
-      const cacheKey = `user:${userId}`;
+      // const cacheKey = `user:${userId}`;
 
-      // Try to fetch user data from Redis cache
-      let userData = await client.get(cacheKey);
-      if (userData) {
-          userData = JSON.parse(userData);
-          return res.send({
-              success: true,
-              data: userData
-          });
-      }
+      // // Try to fetch user data from Redis cache
+      // let userData = await client.get(cacheKey);
+      // if (userData) {
+      //     userData = JSON.parse(userData);
+      //     return res.send({
+      //         success: true,
+      //         data: userData
+      //     });
+      // }
 
       // If not in cache, fetch from database
       const user = await User.findById(userId);
