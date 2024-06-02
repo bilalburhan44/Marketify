@@ -144,22 +144,22 @@ router.post("/get-products", async (req, res) => {
  router.get("/get-product-by-id/:id", async (req, res) => {
      try {
              // Get product data from Redis
-     client.get('product:' + req.params.id, async (err, reply) => {
-            if (err) {
-                console.error('Error:', err);
-            } else {
-                if (reply) {
-                    const product = JSON.parse(reply);
-                    res.send({
-                        success: true,
-                        data: product
-                    });
-                } else {
+    //  client.get('product:' + req.params.id, async (err, reply) => {
+    //         if (err) {
+    //             console.error('Error:', err);
+    //         } else {
+    //             if (reply) {
+    //                 const product = JSON.parse(reply);
+    //                 res.send({
+    //                     success: true,
+    //                     data: product
+    //                 });
+    //             } else {
                     // If data not found in cache, fetch from the database
                     const product = await Product.findById(req.params.id).populate("seller").exec();
                     if (product) {
                         // Cache the fetched product data with expiration time (e.g., 1 hour)
-                        client.set('product:' + req.params.id, JSON.stringify(product), 'EX', 3600);
+                        //client.set('product:' + req.params.id, JSON.stringify(product), 'EX', 3600);
                         res.send({
                             success: true,
                             data: product
@@ -170,9 +170,9 @@ router.post("/get-products", async (req, res) => {
                             message: "Product not found"
                         });
                     }
-                }
-            }
-        });
+                
+            
+        
     } catch (error) {
         res.status(500).send({
             success: false,
@@ -187,9 +187,9 @@ router.post("/get-products", async (req, res) => {
     try {
         const updatedProduct = await Product.findByIdAndUpdate(req.params.id, req.body, { new: true });
         // Update cache
-        await client.set(`product:${req.params.id}`, JSON.stringify(updatedProduct), {
-            EX: 3600 // expires in 1 hour
-        });
+        // await client.set(`product:${req.params.id}`, JSON.stringify(updatedProduct), {
+        //     EX: 3600 // expires in 1 hour
+        // });
         res.send({
             success: true,
             message: "Product updated successfully",
@@ -207,7 +207,7 @@ router.post("/get-products", async (req, res) => {
     try {
         await Product.findByIdAndDelete(req.params.id);
         // Remove from cache
-        await client.del(`product:${req.params.id}`);
+        // await client.del(`product:${req.params.id}`);
         res.send({
             success: true,
             message: "Product deleted successfully",
