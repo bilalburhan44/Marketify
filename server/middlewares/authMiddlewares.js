@@ -4,7 +4,7 @@ const User = require("../models/userModel");
 module.exports = async (req, res, next) => {
   try {
     const token = req.header("authorization").split(" ")[1];
-    const decoded = jwt.verify(token, process.env.jwt_secret);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     if (decoded.authMethod === 'google') {
       // Handle Google authenticated user
